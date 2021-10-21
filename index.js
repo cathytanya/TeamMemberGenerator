@@ -15,38 +15,31 @@ const addManager = () => {
             // prompt for manager's name
             type: 'input',
             message: 'Who is the manager?',
-            name: 'name',
+            name: 'nameManager',
         },
         {
             // prompt user to enter manager's ID
             type: 'input',
             message: "Enter manager's ID:",
-            name: 'id',
+            name: 'idManager',
         },
         {
             // prompt user to enter manager's email
             type: 'input',
             message: "Enter manager's email:",
-            name: 'email',
+            name: 'emailManager',
         },
         {
             // prompt user to enter manager's office number
             type: 'input',
             message: "Enter manager's office number:",
-            name: 'officeNumber',
+            name: 'officeNumberManager',
         },
-        {
-            // prompt user if they want to add employee
-            type: 'confirm',
-            message: "Would you like to add more team members?",
-            name: 'addEmployee',
-            default:false
-        }
     ])
     // set information about the prompts to the managerInfo
     .then(managerInfo => {
-        const {name,id,email,officeNumber} = managerInfo;
-        const manager = new Manager(name,id,email,officeNumber)
+        const {nameManager,idManager,emailManager,officeNumberManager} = managerInfo;
+        const manager = new Manager(nameManager,idManager,emailManager,officeNumberManager)
         team.push(manager)
         console.log(manager)
     })
@@ -70,31 +63,31 @@ const addEmployee = () => {
             // prompt user to enter the name of the employee
             type: 'input',
             message: "Employee Name:",
-            name: 'name',
+            name: 'nameEmployee',
         },
         {
             // prompt user to enter the ID of the employee
             type: 'input',
             message: "Employee ID:",
-            name: 'id',
+            name: 'idEmployee',
         },
         {
             // prompt user to enter the email of the employee
             type: 'input',
             message: "Employee E-Mail:",
-            name: 'email',
+            name: 'emailEmployee',
         },
         {
             // prompt user to enter the github of the employee
             type: 'input',
             message: "Employee GitHub username:",
-            name: 'github',
+            name: 'githubEmployee',
         },
         {
             // prompt user to enter the school of the employee
             type: 'input',
             message: "Employee School of Study:",
-            name: 'school',
+            name: 'schoolEmployee',
         },
         {
             // prompt user to enter the school of the employee
@@ -106,16 +99,16 @@ const addEmployee = () => {
     ])
     // set information about the prompts to the employeeInfo
     .then(employeeInfo => {
-        let {name,id,email,github,school,confirmEmployee} = employeeInfo;
+        let {nameEmployee,idEmployee,emailEmployee,githubEmployee,schoolEmployee,confirmEmployee} = employeeInfo;
         let employee
         // if the person chooses to add Engineer
         if (role === "Engineer"){
-            employee = new Employee (name,id,email,github)
+            employee = new Employee (nameEmployee,idEmployee,emailEmployee,githubEmployee)
             console.log(employee)
         }
         // if the user chooses to add Intern
         else if (role === "Engineer"){
-            employee = new Employee (name,id,email,school)
+            employee = new Employee (nameEmployee,idEmployee,emailEmployee,schoolEmployee)
             console.log(employee)
         }
         // the array list of all the employees
@@ -131,6 +124,16 @@ const addEmployee = () => {
     })
 }
 // function to write the html file 
+fs.writeFile = data => {
+    fs.writeFile("./asset/index.html", data,err => {
+        if (err){
+            console.log(err)
+            return
+        }else{
+            console.log('The Team Member Profile was successfully created! Open the index.html')
+        }
+    })
+}
 
 // adding method to include additional employees
 addManager()
