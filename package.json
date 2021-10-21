@@ -241,7 +241,9 @@
     "spdx-license-ids": "^3.0.10",
     "split-string": "^3.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^27.3.1"
+  },
   "scripts": {
     "test": "jest"
   },

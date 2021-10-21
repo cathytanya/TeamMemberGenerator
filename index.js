@@ -100,7 +100,7 @@ const addEmployee = () => {
     ])
     // set information about the prompts to the employeeInfo
     .then(employeeInfo => {
-        let {name,id,email,github,school,confirm} = employeeInfo;
+        let {name,id,email,github,school,confirmEmployee} = employeeInfo;
         let employee
         // if the person chooses to add Engineer
         if (role === "Engineer"){
@@ -108,7 +108,7 @@ const addEmployee = () => {
             console.log(employee)
         }
         // if the user chooses to add Intern
-        else if (role === "Engineer"){
+        else if (role === "Intern"){
             employee = new Employee (name,id,email,school)
             console.log(employee)
         }
