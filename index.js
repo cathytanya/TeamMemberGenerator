@@ -54,3 +54,5 @@ const addManager = () => {
 // function to write the html file 
 
 // adding method to include additional employees
+addManager()
+
