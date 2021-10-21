@@ -42,6 +42,7 @@ const addManager = () => {
         const manager = new Manager(nameManager,idManager,emailManager,officeNumberManager)
         team.push(manager)
         console.log(manager)
+        addEmployee()
     })
 }
 // prompts for the Employee(choose betwen Intern & Engineer): Name, ID, Email, github
@@ -137,5 +138,5 @@ fs.writeFile = data => {
 
 // adding method to include additional employees
 addManager()
-addEmployee()
+
 
