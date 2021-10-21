@@ -1,0 +1,21 @@
+{
+  "name": "TeamMemberGenerator",
+  "version": "1.0.0",
+  "description": "Application that will generate a team profile",
+  "main": "index.js",
+  "directories": {
+    "positions": "positions"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cathytanya/TeamMemberGenerator"
+  },
+  "author": "Cathy-Colette Tanya",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
+}
