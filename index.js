@@ -5,6 +5,7 @@ const inquirer = require("inquirer")
 const Manager = require('./teamMembers/Manager')
 const Engineer = require('./teamMembers/Engineer')
 const Intern = require('./teamMembers/Intern')
+const { emit } = require("process")
 // make an array for the entered positions the user will have
 const team = []
 // prompts for the Manager: Name, ID, Office Number, Email
@@ -49,10 +50,57 @@ const addManager = () => {
         console.log(manager)
     })
 }
-// prompts for the Employee(choose betwen Intern & Engineer): Name, ID, Office Number, Email
-
+// prompts for the Employee(choose betwen Intern & Engineer): Name, ID, Email, github
+const addEmployee = () => {
+    console.log(`
+    ========================== 
+    ADD EMPLOYEES TO THE TEAM 
+    ==========================
+    `)
+    return inquirer.prompt([
+        {
+            // prompt user to add either an engineer or an intern
+            type: 'list',
+            message: "Choose employee's role",
+            name: 'role',
+            choice:[`Engineer`,`Intern`]
+        },
+        {
+            // prompt user to enter the name of the employee
+            type: 'input',
+            message: "Employee Name:",
+            name: 'name',
+        },
+        {
+            // prompt user to enter the ID of the employee
+            type: 'input',
+            message: "Employee ID:",
+            name: 'id',
+        },
+        {
+            // prompt user to enter the email of the employee
+            type: 'input',
+            message: "Employee E-Mail:",
+            name: 'email',
+        },
+        {
+            // prompt user to enter the github of the employee
+            type: 'input',
+            message: "Employee GitHub username:",
+            name: 'github',
+        },
+    ])
+    // set information about the prompts to the employeeInfo
+    .then(employeeInfo => {
+        const {name,id,email,github} = employeeInfo;
+        const employee = new Employee(name,id,email,github)
+        team.push(employee)
+        console.log(employee)
+    })
+}
 // function to write the html file 
 
 // adding method to include additional employees
 addManager()
+addEmployee()
 
