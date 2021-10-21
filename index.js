@@ -40,6 +40,7 @@ const addManager = () => {
             type: 'confirm',
             message: "Would you like to add more team members?",
             name: 'addEmployee',
+            default:false
         }
     ])
     // set information about the prompts to the managerInfo
@@ -63,7 +64,7 @@ const addEmployee = () => {
             type: 'list',
             message: "Choose employee's role",
             name: 'role',
-            choice:[`Engineer`,`Intern`]
+            choices:[`Engineer`,`Intern`]
         },
         {
             // prompt user to enter the name of the employee
@@ -89,13 +90,44 @@ const addEmployee = () => {
             message: "Employee GitHub username:",
             name: 'github',
         },
+        {
+            // prompt user to enter the school of the employee
+            type: 'input',
+            message: "Employee School of Study:",
+            name: 'school',
+        },
+        {
+            // prompt user to enter the school of the employee
+            type: 'confirm',
+            message: "Add more team members:",
+            name: 'confirmEmployee',
+            default: false
+        },       
     ])
     // set information about the prompts to the employeeInfo
     .then(employeeInfo => {
-        const {name,id,email,github} = employeeInfo;
-        const employee = new Employee(name,id,email,github)
+        let {name,id,email,github,school,confirmEmployee} = employeeInfo;
+        let employee
+        // if the person chooses to add Engineer
+        if (role === "Engineer"){
+            employee = new Employee (name,id,email,github)
+            console.log(employee)
+        }
+        // if the user chooses to add Intern
+        else if (role === "Engineer"){
+            employee = new Employee (name,id,email,school)
+            console.log(employee)
+        }
+        // the array list of all the employees
         team.push(employee)
-        console.log(employee)
+        // if the user wantes to add more employees then go back to the aadEmployee function
+        if (confirmEmployee){
+            return addEmployee(team)
+        }
+        // default=user doesnt need to add more team members
+        else{
+            return team
+        }
     })
 }
 // function to write the html file 
