@@ -15,31 +15,31 @@ const addManager = () => {
             // prompt for manager's name
             type: 'input',
             message: 'Who is the manager?',
-            name: 'nameManager',
+            name: 'name',
         },
         {
             // prompt user to enter manager's ID
             type: 'input',
             message: "Enter manager's ID:",
-            name: 'idManager',
+            name: 'id',
         },
         {
             // prompt user to enter manager's email
             type: 'input',
             message: "Enter manager's email:",
-            name: 'emailManager',
+            name: 'email',
         },
         {
             // prompt user to enter manager's office number
             type: 'input',
             message: "Enter manager's office number:",
-            name: 'officeNumberManager',
+            name: 'officeNumber',
         },
     ])
     // set information about the prompts to the managerInfo
     .then(managerInfo => {
-        const {nameManager,idManager,emailManager,officeNumberManager} = managerInfo;
-        const manager = new Manager(nameManager,idManager,emailManager,officeNumberManager)
+        const {name,id,email,officeNumber} = managerInfo;
+        const manager = new Manager(name,id,email,officeNumber)
         team.push(manager)
         console.log(manager)
         addEmployee()
@@ -64,31 +64,31 @@ const addEmployee = () => {
             // prompt user to enter the name of the employee
             type: 'input',
             message: "Employee Name:",
-            name: 'nameEmployee',
+            name: 'name',
         },
         {
             // prompt user to enter the ID of the employee
             type: 'input',
             message: "Employee ID:",
-            name: 'idEmployee',
+            name: 'id',
         },
         {
             // prompt user to enter the email of the employee
             type: 'input',
             message: "Employee E-Mail:",
-            name: 'emailEmployee',
+            name: 'email',
         },
         {
             // prompt user to enter the github of the employee
             type: 'input',
             message: "Employee GitHub username:",
-            name: 'githubEmployee',
+            name: 'github',
         },
         {
             // prompt user to enter the school of the employee
             type: 'input',
             message: "Employee School of Study:",
-            name: 'schoolEmployee',
+            name: 'school',
         },
         {
             // prompt user to enter the school of the employee
@@ -100,16 +100,16 @@ const addEmployee = () => {
     ])
     // set information about the prompts to the employeeInfo
     .then(employeeInfo => {
-        let {nameEmployee,idEmployee,emailEmployee,githubEmployee,schoolEmployee,confirmEmployee} = employeeInfo;
+        let {name,id,email,github,school,confirm} = employeeInfo;
         let employee
         // if the person chooses to add Engineer
         if (role === "Engineer"){
-            employee = new Employee (nameEmployee,idEmployee,emailEmployee,githubEmployee)
+            employee = new Employee (name,id,email,github)
             console.log(employee)
         }
         // if the user chooses to add Intern
         else if (role === "Engineer"){
-            employee = new Employee (nameEmployee,idEmployee,emailEmployee,schoolEmployee)
+            employee = new Employee (name,id,email,school)
             console.log(employee)
         }
         // the array list of all the employees
