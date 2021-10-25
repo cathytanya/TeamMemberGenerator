@@ -14,7 +14,7 @@ const addManager = () => {
         {
             // prompt for manager's name
             type: 'input',
-            message: 'Who is the manager?',
+            message: 'Name of manager?',
             name: 'name',
         },
         {
@@ -138,5 +138,7 @@ fs.writeFile = data => {
 
 // adding method to include additional employees
 addManager()
+
+
 
 
