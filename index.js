@@ -5,7 +5,6 @@ const inquirer = require("inquirer")
 const Manager = require('./teamMembers/Manager')
 const Engineer = require('./teamMembers/Engineer')
 const Intern = require('./teamMembers/Intern')
-const { emit } = require("process")
 // make an array for the entered positions the user will have
 const team = []
 // prompts for the Manager: Name, ID, Office Number, Email
