@@ -10,7 +10,7 @@ class Employee{
         return this.name;
     }
     // reeturn input of ID
-    getID (){
+    getId (){
         return this.id;
     }
     // return input of email
