@@ -1,9 +1,40 @@
-header{
-    color: white;
-    background: url(./header.jpg);
-    background-size: cover;
-    
+* {
+    box-sizing: border-box;
 }
-body{
-    background-color: #542344;
+
+:root {
+    --primary: rgb(160, 0, 85);
+    --secondary: white;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#navbar {
+    background-color: var(--primary);
+    color: var(--secondary);
+    font-size: 50px;
+}
+
+.navbar-brand {
+    font-size: 50px;
+}
+
+
+.card-header {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.card-body {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.container {
+    margin: 100px auto;
+    justify-content: space-evenly;
+    display: flex;
+    
 }
