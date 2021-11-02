@@ -11,7 +11,7 @@ class Engineer extends Employee{
     getGithub(){
         return this.github
     }
-    // override the role to manager
+    // override the role to engineer
     getRole(){
         return "Engineer"
     }
