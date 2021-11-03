@@ -77,7 +77,7 @@ const addManager = () => {
         const manager = new Manager(name,id,email,officeNumber)
         team.push(manager)
         console.log(manager)
-        addEmployee()
+        // addEmployee()
     })
 }
 // prompts for the Employee(choose betwen Intern & Engineer): Name, ID, Email, github
@@ -177,16 +177,16 @@ const addEmployee = () => {
     ])
     // set information about the prompts to the employeeInfo
     .then(employeeInfo => {
-        let {name,id,email,github,school,confirmEmployee} = employeeInfo;
-        let employee
+        let {name,id,email,role,github,school,confirmEmployee} = employeeInfo;
+        let employee;
         // if the person chooses to add Engineer
         if (role === "Engineer"){
-            employee = new Employee (name,id,email,github)
+            employee = new Engineer (name,id,email,github)
             console.log(employee)
         }
         // if the user chooses to add Intern
         else if (role === "Intern"){
-            employee = new Employee (name,id,email,school)
+            employee = new Intern (name,id,email,school)
             console.log(employee)
         }
         // the array list of all the employees
