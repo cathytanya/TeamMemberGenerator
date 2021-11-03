@@ -1,3 +1,5 @@
+// link to js that will create the html file
+const generateHTML = require("./src/generateHTML")
 // List of modules used
 const fs = require("fs")
 const inquirer = require("inquirer")
@@ -13,31 +15,65 @@ const addManager = () => {
         {
             // prompt for manager's name
             type: 'input',
-            message: 'Name of manager?',
+            message: 'Name of Manager?',
             name: 'name',
+            validate: inputName =>{
+                if (inputName){
+                    return true;
+                }else{
+                    console.log("Please Enter Manager's name")
+                    return false;
+                }
+            }
         },
         {
             // prompt user to enter manager's ID
             type: 'input',
-            message: "Enter manager's ID:",
+            message: "Enter Manager's ID:",
             name: 'id',
+            validate: inputID =>{
+                if (inputID){
+                    return true;
+                }else{
+                    console.log("Please Enter Manager's ID")
+                    return false;
+                }
+            }
         },
         {
             // prompt user to enter manager's email
             type: 'input',
-            message: "Enter manager's email:",
+            message: "Enter Manager's Email:",
             name: 'email',
+            validate: inputEmail =>{
+                valid =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputEmail)
+                if (valid){
+                    return true;
+                }else{
+                    console.log("Please Enter Manager's E-mail")
+                    return false;
+                }
+            }
         },
         {
             // prompt user to enter manager's office number
             type: 'input',
-            message: "Enter manager's office number:",
+            message: "Enter Manager's Office Number:",
             name: 'officeNumber',
+            validate: inputOficeNumber =>{
+                if (inputOficeNumber){
+                    return true;
+                }else{
+                    console.log("Please Enter Manager's Office Number")
+                    return false;
+                }
+            }
+
         },
     ])
     // set information about the prompts to the managerInfo
-    .then(managerInfo => {
-        const {name,id,email,officeNumber} = managerInfo;
+    .then(inputManager => {
+        const {name,id,email,officeNumber} = inputManager;
         const manager = new Manager(name,id,email,officeNumber)
         team.push(manager)
         console.log(manager)
@@ -55,39 +91,81 @@ const addEmployee = () => {
         {
             // prompt user to add either an engineer or an intern
             type: 'list',
-            message: "Choose employee's role",
+            message: "Choose Employee's Role",
             name: 'role',
-            choices:[`Engineer`,`Intern`,`No more Team members`]
+            choices:[`Engineer`,`Intern`]
         },
         {
             // prompt user to enter the name of the employee
             type: 'input',
             message: "Employee Name:",
             name: 'name',
+            validate: inputName =>{
+                if (inputName){
+                    return true;
+                }else{
+                    console.log("Please Enter Employee's name")
+                    return false;
+                }
+            }
         },
         {
             // prompt user to enter the ID of the employee
             type: 'input',
             message: "Employee ID:",
             name: 'id',
+            validate: inputID =>{
+                if (inputID){
+                    return true;
+                }else{
+                    console.log("Please Enter Employee's ID")
+                    return false;
+                }
+            }
         },
         {
             // prompt user to enter the email of the employee
             type: 'input',
             message: "Employee E-Mail:",
             name: 'email',
+            validate: inputEmail =>{
+                valid =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputEmail)
+                if (valid){
+                    return true;
+                }else{
+                    console.log("Please Enter Employee's E-mail")
+                    return false;
+                }
+            }
         },
         {
             // prompt user to enter the github of the employee
             type: 'input',
             message: "Employee GitHub username:",
             name: 'github',
+            when: (input) => input.role === "Engineer",
+            validate: inputGitHub =>{
+                if (inputGitHub){
+                    return true;
+                }else{
+                    console.log("Please Enter Employee's GitHub")
+                }
+            }
         },
         {
             // prompt user to enter the school of the employee
             type: 'input',
             message: "Employee School of Study:",
             name: 'school',
+            when: (input) => input.role === "Intern",
+            validate: inputSchool =>{
+                if (inputSchool){
+                    return true;
+                }else{
+                    console.log("Please Enter Employee's School")
+                }
+            }
+
         },
         {
             // prompt user to enter the school of the employee
@@ -137,6 +215,10 @@ fs.writeFile = data => {
 
 // adding method to include additional employees
 addManager()
+    .then(addEmployee)
+    .then(team => generateHTML(team))
+    .then(pageHTML => writeFile(pageHTML))
+    .catch(err=> console.log(err))
 
 
 
