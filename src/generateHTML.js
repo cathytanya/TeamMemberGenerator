@@ -53,7 +53,7 @@ const generateIntern = function (intern){
             <div class="card-body">
                 <p class="id">ID: ${intern.id}</p>
                 <p class="email">Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
-                <p class="school">School: ${intern.school}/p>
+                <p class="school">School: ${intern.school}</p>
             </div>
         </div>
     </div>
@@ -82,13 +82,14 @@ generateHTML =  (data) => {
             const internCard = generateIntern(employee);
             cardArray.push(internCard);
         }
+        console.log(employee)
     }
 
     // join string 
     const employeeCards = cardArray.join('')
 
     // return to generate the html page
-    const generateTeamMembers = generateHTML(employeeCards);
+    const generateTeamMembers = generateTeamPage(employeeCards);
     return generateTeamMembers;
 }
 

@@ -201,8 +201,8 @@ const addEmployee = () => {
         }
     })
 }
-// function to write the html file 
-fs.writeFile = data => {
+// function to write the html file
+const writeFile = data => {
     fs.writeFile("./asset/index.html", data,err => {
         if (err){
             console.log(err)
