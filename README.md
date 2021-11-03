@@ -4,6 +4,7 @@
 Using Node.JS, create a webpage what will display group members and their position.
 
 ## Screencastify Link:
+https://watch.screencastify.com/v/nEYxCkmsDR2WsdW969Ai
 
 ## Criteria:
 GIVEN a command-line application that accepts user input
